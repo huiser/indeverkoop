@@ -1,0 +1,5 @@
+-r base.txt
+
+coverage
+django-discover-runner
+django-debug-toolbar
