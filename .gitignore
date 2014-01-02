@@ -1,1 +1,3 @@
 *.pyc
+idv/static/*
+*.swp
