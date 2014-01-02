@@ -104,3 +104,5 @@ SESSION_REDIS_DB = 0
 #SESSION_REDIS_PASSWORD = 'password'
 SESSION_REDIS_PREFIX = 'session'
 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
+
