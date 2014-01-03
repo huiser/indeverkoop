@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gunicorn',
     'south',
     'profiles',
 )
@@ -106,3 +107,7 @@ SESSION_REDIS_PREFIX = 'session'
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+}
