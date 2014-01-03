@@ -5,3 +5,4 @@ psycopg2==2.5.1
 sqlparse==0.1.10
 Unipath==1.0
 redis==2.8.0
+gunicorn==18.0
