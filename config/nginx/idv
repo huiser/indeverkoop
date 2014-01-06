@@ -27,7 +27,18 @@ server {
 	keepalive_timeout 5;
 
 	# path for static files
-	root /webapps/idv/indeverkoop/idv/static;
+	#root /webapps/idv/indeverkoop/idv/static;
+
+	access_log	/webapps/idv/log/nginx-access.log;
+	error_log	/webapps/idv/log/nginx-error.log;
+ 
+	location /static/ {
+		alias   /webapps/idv/indeverkoop/idv/static/;
+	}
+
+	location /media/ {
+		alias   /webapps/idv/indeverkoop/idv/media/;
+	}
 
 	location / {
 		# an HTTP header important enough to have its own Wikipedia entry:
