@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     'gunicorn',
     'south',
     'profiles',
+    'woning',
 )
 
 MIDDLEWARE_CLASSES = (
