@@ -1,22 +1,7 @@
-# this can be any application server, not just Unicorn/Rainbows!
-upstream app_server {
-	# fail_timeout=0 means we always retry an upstream even if it failed
-	# to return a good HTTP response (in case the Unicorn master nukes a
-	# single worker for timing out).
-
-	# for UNIX domain socket setups:
-	#server unix:/tmp/gunicorn.sock fail_timeout=0;
-
-	# for TCP setups, point these to your backend servers
-	server 127.0.0.1:8000 fail_timeout=0;
-	# server 192.168.0.8:8080 fail_timeout=0;
-	# server 192.168.0.9:8080 fail_timeout=0;
-}
-
 server {
 	# listen 80 default deferred; # for Linux
 	# listen 80 default accept_filter=httpready; # for FreeBSD
-	listen 80 default;
+	listen 80 default deferred;
 
 	client_max_body_size 4G;
 	server_name _;
@@ -25,9 +10,6 @@ server {
 	# retrieve needed images/icons/frames, connections are cheap in
 	# nginx so increasing this is generally safe...
 	keepalive_timeout 5;
-
-	# path for static files
-	#root /webapps/idv/indeverkoop/idv/static;
 
 	access_log	/webapps/idv/log/nginx-access.log;
 	error_log	/webapps/idv/log/nginx-error.log;
@@ -66,8 +48,9 @@ server {
 
 		# Try to serve static files from nginx, no point in making an
 		# *application* server like Unicorn/Rainbows! serve static files.
-		proxy_pass http://app_server;
-
+		uwsgi_read_timeout 10s;
+		include /etc/nginx/uwsgi_params;
+		uwsgi_pass unix:/tmp/uwsgi-idv.sock;
 	}
 
 	# Error pages
