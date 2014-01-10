@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Woning
 
-# Register your models here.
+class WoningAdmin(admin.ModelAdmin):
+    list_display = ("straat", "huisnummer", "plaats",)
+
+admin.site.register(Woning, WoningAdmin)
