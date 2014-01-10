@@ -32,3 +32,6 @@ class Woning(models.Model):
     class Meta:
         verbose_name_plural = 'woningen'
         ordering            = ['published_at', ]
+
+    def __unicode__(self):
+        return u"%s %s, %s" % (self.straat, self.huisnummer, self.plaats)
