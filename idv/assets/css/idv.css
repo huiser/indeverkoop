@@ -1,8 +1,10 @@
 /* Space out content a bit */
 body {
-  padding-top: 20px;
+  /*padding-bottom: 20px;*/
+  font-family: 'Ubuntu', sans-serif;
+  body {
+  padding-top: 10px;
   padding-bottom: 20px;
-  font-family: 'Montserrat', sans-serif;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -13,9 +15,11 @@ body {
 }
 
 footer {
-	border-top: 1px dashed #CCCCCC;
-	margin: 40px 0px;
-	padding: 20px 0px;
+  border-top: 1px dashed #CCCCCC;
+  /*margin: 40px 0px;*/
+  margin-top: 40px;
+  padding: 20px 0px;
+  background-color: #f8f8f8;
 }
 
 
@@ -87,4 +91,10 @@ footer {
 
 .navbar {
 	background-color: #cdc2b7;
+}
+
+@media (min-width: 768px) {
+  .form-horizontal .control-label {
+    text-align: left;
+  }
 }
