@@ -1,7 +1,6 @@
-#from django.views.generic import DetailView
+from django.views.generic import ListView
+from .models import Woning
 
-from django.views.generic.simple import direct_to_template
+class WoningList(ListView):
+    model = Woning
 
-
-#class TasteResultsView(TasteDetailView):
-#	template_name = "tastings/results.html"

@@ -1,0 +1,13 @@
+{% extends "indeverkoop.html" %}
+{% load staticfiles %}
+{% block homeactive %} class="active"{% endblock homeactive %}
+{% block content %}
+<!-- nieuwste woningen -->
+<div class="container">
+<table class="table table-striped table-bordered table-condensed">
+ {% for woning in object_list %}
+<tr><td>{{ woning.straat }}</td></tr>
+{% endfor %} 
+</table>
+</div><!-- container -->
+{% endblock content %}

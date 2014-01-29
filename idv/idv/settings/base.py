@@ -19,10 +19,6 @@ STATIC_ROOT = PROJECT_DIR.child("static")
 STATICFILES_DIRS = (
     PROJECT_DIR.child("assets"),
 )
-TEMPLATE_DIRS = (
-    PROJECT_DIR.child("templates"),
-)
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -50,8 +46,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'south',
+    'bootstrap3',
+    'crispy_forms',
     'profiles',
+    'south',
     'woning',
 )
 
@@ -110,4 +108,30 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStora
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
+}
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+)
+
+TEMPLATE_DIRS = (
+    PROJECT_DIR.child("templates"),
+)
+
+#AUTH_USER_MODEL = "profiles.IdvUser"
+LOGIN_URL = 'inloggen'
+LOGOUT_URL = 'uitloggen'
+LOGIN_REDIRECT_URL = 'profiel'
+AUTH_PROFILE_MODULE = "profiles.Profiel"
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': [
+            '127.0.0.1:11211',
+        ]
+    }
 }

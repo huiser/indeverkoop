@@ -1,0 +1,22 @@
+{% extends "indeverkoop.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% block homeactive %} class="active"{% endblock homeactive %}
+{% block content %}
+<div class="container">
+  <div class="page-header">
+    <h1>Profiel van {{ profiel.volledigenaam }} <small><a href="{% url 'profielaanpassen' %}">{% bootstrap_icon "edit" %}</a></small></h1>
+{# <div class="pull-right"> <a class="btn btn-primary btn-lg" href="{% url 'profielaanpassen' %}">Profiel aanpassen</a> </div> #}
+  </div>
+  <table class="table">
+    <tbody>
+      <tr><td>Naam:</td><td>{{ profiel.volledigenaam }}</td></tr>
+      <tr><td>Email:</td><td>{{ profiel.user.email }}</td></tr>
+      <tr><td>Geslacht:</td><td>{{ profiel.get_geslacht_display }}</td></tr>
+      <tr><td>Telefoonnummer 1:</td><td>{{ profiel.telefoonnummer1 }}</td></tr>
+      <tr><td>Telefoonnummer 2:</td><td>{{ profiel.telefoonnummer2 }}</td></tr>
+      <tr><td>Adres:</td><td>{{ profiel.post_straat }} {{ profiel.post_huisnummer }}{{ profiel.post_toevoeging }}<br/>{{ profiel.post_postcode }} {{ profiel.post_plaats }}<br/>{{ profiel.get_post_land_display }}</td></tr>
+    </tbody>
+  </table>
+</div><!-- container -->
+{% endblock content %}
