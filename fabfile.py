@@ -66,16 +66,18 @@ def syncdb():
 def restart_uwsgi():
     sudo('restart idv')
 
-def deploy():
-    """ rsync code to remote host """
+def deploy(version):
     require('root', provided_by=('test', 'acceptance', 'production'))
+    code_dest = os.path.join(env.root, env.project)
     if env.environment == 'production':
         if not confirm('Are you sure you want to deploy production?', default=False):
             utils.abort('Production deployment aborted.')
-    with prefix('. /etc/bash_completion.d/virtualenvwrapper'):
-        with prefix('workon %(virtualenv)s' % env):
-            pull()
-            migrate()
+    with cd(code_dest):
+        run('git pull')
+        run('git checkout v%(version)s' % env
+    #with prefix('. /etc/bash_completion.d/virtualenvwrapper'):
+    #    with prefix('workon %(virtualenv)s' % env):
+
 
 def update_requirements():
     """ update external dependencies on remote host """
