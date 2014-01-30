@@ -16,13 +16,14 @@ def bootstrap():
     code_dest = os.path.join(env.root, env.project)
     requirements_file = os.path.join(code_dest, 'requirements', '%s.txt' % env.environment)
     run('rm -rf %s' % code_dest)
-    run('git clone --branch %s %s %s' % (env.branch, env.repo, code_dest))
+    run('git clone %s %s' % (env.repo, code_dest))
     run('mkdir -p %(root)s' % env)
     run('mkdir -p %s' % os.path.join(env.root, 'log'))
     with prefix('. /etc/bash_completion.d/virtualenvwrapper'):
         run('mkvirtualenv %(virtualenv_args)s %(virtualenv)s' % env)
         with prefix('workon %(virtualenv)s' % env):
             with cd(code_dest):
+                run('git checkout %s' % env.branch)
                 run('pip install --requirement %s ' % requirements_file)
                 run('./idv/manage.py syncdb')
 
@@ -93,7 +94,7 @@ def update_requirements():
 def production():
     env.environment = 'production'
     env.hosts = ['willie.huiser.nl',]
-    env.branch = 'master'
+    env.branch = 'production'
 
 def acceptance():
     env.hosts = ['fry.huiser.nl',]
