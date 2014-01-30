@@ -74,7 +74,7 @@ def deploy(version):
             utils.abort('Production deployment aborted.')
     with cd(code_dest):
         run('git pull')
-        run('git checkout v%(version)s' % env
+        run('git checkout v%s' % version)
     #with prefix('. /etc/bash_completion.d/virtualenvwrapper'):
     #    with prefix('workon %(virtualenv)s' % env):
 
